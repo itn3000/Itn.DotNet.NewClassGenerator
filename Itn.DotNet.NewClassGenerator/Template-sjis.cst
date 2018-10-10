@@ -1,5 +1,5 @@
 using System;
-// æ—¥æœ¬èªžå…¥ã‚Š
+// “ú–{Œê“ü‚è
 namespace @Model.Namespace
 {
     public class @Model.ClassName
