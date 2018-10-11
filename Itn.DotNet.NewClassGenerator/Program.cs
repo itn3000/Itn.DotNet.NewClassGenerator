@@ -4,6 +4,7 @@ using McMaster.Extensions.CommandLineUtils.HelpText;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.Extensions.DependencyInjection;
 using Buildalyzer;
 using System.IO;
 using System.Linq;
@@ -22,8 +23,12 @@ namespace Itn.DotNet.NewClassGenerator
     {
         static CommandLineApplication<GeneratorApp> CreateApplication()
         {
+            var services = new ServiceCollection();
+            services.AddTransient<IStandardIOFactory, ConsoleStandardIOFactory>();
             var app = new CommandLineApplication<GeneratorApp>();
-            app.Conventions.UseDefaultConventions();
+            app.Conventions.UseDefaultConventions()
+                .UseConstructorInjection(services.BuildServiceProvider())
+                ;
             return app;
         }
         static void Main(string[] args)

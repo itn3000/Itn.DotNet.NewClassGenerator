@@ -43,12 +43,22 @@ namespace @Model.Namespace
         public string FileEncoding { get; }
         [Argument(1, "name of class(required)")]
         public string ClassName { get; }
-        public GeneratorApp(IConsole console)
+
+        public GeneratorApp(IConsole console, IStandardIOFactory stdio)
         {
             m_Console = console;
+            if(stdio == null)
+            {
+                m_StdioFactory = new ConsoleStandardIOFactory();
+            }
+            else
+            {
+                m_StdioFactory = stdio;
+            }
         }
         IConsole m_Console { get; }
-        const string DefaultTemplate = @"
+        IStandardIOFactory m_StdioFactory { get; }
+        public const string DefaultTemplate = @"
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -108,7 +118,7 @@ namespace @Model.Namespace
             }
             else if(TemplateFile == "-")
             {
-                using(var istm = Console.OpenStandardInput())
+                using(var istm = m_StdioFactory.OpenStandardInput())
                 {
                     Span<byte> buf = stackalloc byte[256];
                     var inputBytes = new byte[1024];
@@ -141,7 +151,7 @@ namespace @Model.Namespace
         {
             if (string.IsNullOrEmpty(outputFilePath))
             {
-                return Console.OpenStandardOutput();
+                return m_StdioFactory.OpenStandardOutput();
             }
             else
             {
