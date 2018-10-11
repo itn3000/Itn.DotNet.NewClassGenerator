@@ -14,7 +14,7 @@ using RazorLight.Caching;
 namespace Itn.DotNet.NewClassGenerator
 {
     [HelpOption(Description = "generating C# class file from razor template")]
-    [VersionOption("0.1.0")]
+    [VersionOption("0.1.1")]
     class GeneratorApp
     {
         [Option("-t|--template <TEMPLATEFILE>", @"razor template file, '-' means get from standard input, default is following:
