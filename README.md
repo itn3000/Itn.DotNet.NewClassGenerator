@@ -1,5 +1,7 @@
 # New class file generator from Razor template file
 
+[NuGet project page](https://www.nuget.org/packages/Itn.DotNet.NewClassGenerator/)
+
 # Prerequisits
 
 * [dotnet core runtime 2.1](https://www.microsoft.com/net/download)
