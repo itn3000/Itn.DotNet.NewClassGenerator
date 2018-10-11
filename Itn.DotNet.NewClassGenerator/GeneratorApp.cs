@@ -33,7 +33,7 @@ namespace @Model.Namespace
 -----------------
 ", CommandOptionType.SingleValue)]
         public string TemplateFile { get; }
-        [Option("-a|--properties <NAME>=<VALUE>", "additional properties for razor(can be accessed by @Model.Properties[<NAME>])", CommandOptionType.MultipleValue)]
+        [Option("-a|--properties <NAME>=<VALUE>", "additional properties for razor(can be accessed by @Model.Properties[\"<NAME>\"])", CommandOptionType.MultipleValue)]
         public string[] AdditionalProperties { get; }
         [Option("-n|--namespace <NAMESPACE>", "class namespace(default: current directory name)", CommandOptionType.SingleValue)]
         public string Namespace { get; }
