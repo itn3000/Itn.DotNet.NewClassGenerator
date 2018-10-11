@@ -4,9 +4,13 @@ before_build:
   pwsh: msbuild Itn.DotNet.NewClassGenerator.sln /t:Restore
 build:
   verbosity: minimal
+artifacts:
+  - path: '*.nupkg'
+    name: NuGetPackages
 deploy:
   - provider: NuGet
     api_key:
       secure: bY30MmrEC8g9+KkstQtTTJPjUYWuOZrBNObPuUo8Qj6iBJ1Coi7kYb1fnUzPhCsU
     on:
       APPVEYOR_REPO_TAG: true
+    artifact: NuGetPackages
